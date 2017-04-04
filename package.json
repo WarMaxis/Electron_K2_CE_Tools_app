@@ -1,0 +1,16 @@
+{
+    "name": "file-name-changer",
+    "version": "1.0.2",
+    "description": "Program służący do zamiany nazw plików (pozbycie się polskich znaków oraz spacji).",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "author": "Michał Milanowski",
+    "license": "MIT",
+    "devDependencies": {
+        "electron": "~1.6.2",
+        "fs-extra": "^2.1.2",
+        "recursive-readdir": "^2.1.1"
+    }
+}
