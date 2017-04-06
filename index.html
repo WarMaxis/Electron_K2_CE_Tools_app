@@ -1,13 +1,139 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>File Name Changer || K2 Tools by Michał Milanowski</title>
+
+    <!-- Bootstrap -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            position: relative;
+            margin-bottom: 100px;
+        }
+        
+        .logo {
+            padding: 25px 0;
+        }
+        
+        #app-start-button {
+            margin-top: 15px;
+        }
+        
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 0;
+        }
+        
+        .files-table {
+            margin-top: 30px;
+            max-height: 200px;
+            overflow: auto;
+        }
+        
+        .files-number {
+            position: absolute;
+            right: 25px;
+            bottom: 8px;
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <img src="./assets/img/k2-logo.jpg" class="img-responsive logo" alt="K2 Logo" title="K2 - dla nas to możliwe">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="jumbotron">
+                    <h2>File Name Changer</h2>
+                    <p>Narzędzie do zmiany nazw plików
+                        <br>(usuwa polskie znaki oraz spacje)
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <button id="app-choose-files-button" type="button" class="btn btn-default btn-block">Wybierz folder z plikami</button>
+                <button id="app-start-button" type="button" class="btn btn-primary btn-block" disabled="disabled">Zamień nazwy plików</button><span class="badge files-number">14</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <table class="table table-bordered files-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ścieżka pliku</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Larry</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>Larry</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>Larry</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>Larry</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">8</th>
+                            <td>Larry</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">9</th>
+                            <td>Larry</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">10</th>
+                            <td>Larry</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row footer">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-body text-center">
+                        File Name Changer || K2 Tools, made with <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> by <strong><a href="https://www.linkedin.com/in/michalmilanowski/" target="_blank" title="Best Front-End Developer EVER!!! <3">Michał Milanowski</a></strong>, version 1.0.2 (06.04.2017)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 <script>
