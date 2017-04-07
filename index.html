@@ -40,7 +40,7 @@
         
         .files-number {
             position: absolute;
-            right: 25px;
+            right: 10px;
             bottom: 8px;
             display: none;
         }
@@ -51,6 +51,10 @@
         
         .files-table td {
             font-size: 12px;
+        }
+        
+        .button-second-container {
+            position: relative;
         }
     </style>
 </head>
@@ -83,12 +87,16 @@
                         <strong>Nie wybrałeś żadnego folderu!</strong>
                     </div>
                 </div>
-                <button id="app-start-button" type="button" class="btn btn-primary btn-block" disabled="disabled">Zamień nazwy plików</button><span id="files-quantity" class="badge files-number"></span>
-                <div id="app-success-alert" class="alert alert-success alert-dismissible fade in" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <strong>Zmiana nazw plików zakończona!</strong>
+                <div class="button-second-container">
+                    <button id="app-start-button" type="button" class="btn btn-primary btn-block" disabled="disabled">Zamień nazwy plików</button><span id="files-quantity" class="badge files-number"></span>
+                </div>
+                <div id="alert-container-second">
+                    <div id="app-success-alert" class="alert alert-success alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Zmiana nazw plików zakończona!</strong>
+                    </div>
                 </div>
             </div>
         </div>

@@ -17,8 +17,9 @@ const appObjects = {
     chooseFiles: document.getElementById('app-choose-files-button'),
     startApp: document.getElementById('app-start-button'),
     chooseFilesAlert: document.getElementsByClassName('alert-warning'),
-    appSuccessAlert: document.getElementById('app-success-alert'),
-    filesQuantity: document.getElementById('files-quantity')
+    appSuccessAlert: document.getElementsByClassName('alert-success'),
+    filesQuantity: document.getElementById('files-quantity'),
+    filesTable: document.getElementById('files-table-list')
 };
 
 // Work files directory
@@ -41,6 +42,10 @@ function chooseFiles() {
             appObjects.startApp.removeAttribute('disabled');
             recursive(filesDirectory, function (error, allFiles) {
                 appObjects.filesQuantity.innerHTML = allFiles.length;
+                allFiles.forEach(function (fileName, fileNumber) {
+                    fileNumber += 1;
+                    appObjects.filesTable.innerHTML += '<tr><th scope="row">' + fileNumber + '</th><td>' + fileName + '</td></tr>';
+                });
             });
             appObjects.filesQuantity.style.display = 'block';
             return;
@@ -73,10 +78,11 @@ function getDateTime() {
 }
 
 // Create new directory base on current system date and time
-const baseDirectory = './',
-    currentDateAndTime = getDateTime();
+const baseDirectory = './';
+var currentDateAndTime;
 
 function createDirectory(callback) {
+    currentDateAndTime = getDateTime();
     fs.mkdirSync(baseDirectory + currentDateAndTime);
     callback();
 }
@@ -115,13 +121,26 @@ function copyAndRenameFiles() {
                     return console.error(err);
                 }
                 console.log('\n✔ KOPIOWANIE ZAKOŃCZONE \n' + 'Folder docelowy: ' + baseDirectory + currentDateAndTime + '    ' + fileOnlyName + '\n');
+                appObjects.appSuccessAlert[0].style.display = 'block';
+                appObjects.filesTable.innerHTML = "";
+                appObjects.filesQuantity.style.display = 'none';
+                appObjects.startApp.setAttribute('disabled', 'disabled');
             });
         });
     });
 }
 
 appObjects.chooseFiles.onclick = function () {
+    document.getElementById('alert-container-second').innerHTML += '<div id="app-success-alert" class="alert alert-success alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Zmiana nazw plików zakończona!</strong></div>';
+    appObjects.appSuccessAlert[0].style.display = 'none';
+    appObjects.chooseFilesAlert[0].style.display = 'none';
+    appObjects.startApp.setAttribute('disabled', 'disabled');
+    appObjects.filesQuantity.style.display = 'none';
+    appObjects.filesTable.innerHTML = "";
+    console.clear();
     chooseFiles();
 };
 
-// createDirectory(copyAndRenameFiles);
+appObjects.startApp.onclick = function () {
+    createDirectory(copyAndRenameFiles);
+};
