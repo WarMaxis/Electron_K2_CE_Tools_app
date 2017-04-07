@@ -18,6 +18,7 @@ const appObjects = {
     startApp: document.getElementById('app-start-button'),
     chooseFilesAlert: document.getElementsByClassName('alert-warning'),
     appSuccessAlert: document.getElementById('app-success-alert'),
+    filesQuantity: document.getElementById('files-quantity')
 };
 
 // Work files directory
@@ -32,10 +33,16 @@ function chooseFiles() {
         if (folderPaths === undefined) {
             appObjects.chooseFilesAlert[0].style.display = 'block';
             document.getElementById('alert-container-firtst').innerHTML += '<div id="choose-files-alert" class="alert alert-warning alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Nie wybrałeś żadnego folderu!</strong></div>';
+            appObjects.filesQuantity.style.display = 'none';
+            appObjects.startApp.setAttribute('disabled', 'disabled');
             return;
         } else {
             filesDirectory = folderPaths[0];
             appObjects.startApp.removeAttribute('disabled');
+            recursive(filesDirectory, function (error, allFiles) {
+                appObjects.filesQuantity.innerHTML = allFiles.length;
+            });
+            appObjects.filesQuantity.style.display = 'block';
             return;
         }
     });
