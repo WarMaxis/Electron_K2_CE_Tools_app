@@ -35,6 +35,7 @@ function chooseFiles() {
             return;
         } else {
             filesDirectory = folderPaths[0];
+            appObjects.startApp.removeAttribute('disabled');
             return;
         }
     });
