@@ -44,6 +44,10 @@
             bottom: 8px;
             display: none;
         }
+        
+        .alert {
+            display: none;
+        }
     </style>
 </head>
 
@@ -67,7 +71,21 @@
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4">
                 <button id="app-choose-files-button" type="button" class="btn btn-default btn-block">Wybierz folder z plikami</button>
+                <div id="alert-container-firtst">
+                    <div id="choose-files-alert" class="alert alert-warning alert-dismissible fade in" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Nie wybrałeś żadnego folderu!</strong>
+                    </div>
+                </div>
                 <button id="app-start-button" type="button" class="btn btn-primary btn-block" disabled="disabled">Zamień nazwy plików</button><span class="badge files-number">14</span>
+                <div id="app-success-alert" class="alert alert-success alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <strong>Zmiana nazw plików zakończona!</strong>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -138,7 +156,9 @@
 
 <script>
     // You can also require other files to run in this process
-    require('./renderer.js')
+    require('./renderer.js');
+    window.jQuery = window.$ = require('./assets/js/jquery-3.2.0.min.js');
+    require('./assets/js/bootstrap.min.js');
 </script>
 
 </html>
