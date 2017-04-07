@@ -78,7 +78,7 @@ function getDateTime() {
 }
 
 // Create new directory base on current system date and time
-const baseDirectory = './';
+const baseDirectory = '../';
 var currentDateAndTime;
 
 function createDirectory(callback) {
