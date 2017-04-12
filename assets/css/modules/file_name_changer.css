@@ -1,0 +1,33 @@
+/* File-name-changer module styles */
+
+
+/* Buttons */
+
+#app-start-button {
+    margin-top: 15px;
+}
+
+.button-second-container {
+    position: relative;
+}
+
+
+/* Files table */
+
+.files-table {
+    margin-top: 30px;
+}
+
+.files-table td {
+    font-size: 12px;
+}
+
+
+/* Files counter */
+
+.files-number {
+    display: none;
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+}

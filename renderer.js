@@ -33,7 +33,7 @@ function chooseFiles() {
         // folderPaths is an array that contains all the selected paths
         if (folderPaths === undefined) {
             appObjects.chooseFilesAlert[0].style.display = 'block';
-            document.getElementById('alert-container-firtst').innerHTML += '<div id="choose-files-alert" class="alert alert-warning alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Nie wybrałeś żadnego folderu!</strong></div>';
+            document.getElementById('alert-container-first').innerHTML += '<div id="choose-files-alert" class="alert alert-warning alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Nie wybrałeś żadnego folderu!</strong></div>';
             appObjects.filesQuantity.style.display = 'none';
             appObjects.startApp.setAttribute('disabled', 'disabled');
             return;

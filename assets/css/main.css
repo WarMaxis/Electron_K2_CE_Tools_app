@@ -1,0 +1,30 @@
+/* Main CSS styles file */
+
+
+/* Main sections styles */
+
+body {
+    margin-bottom: 100px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+
+
+/* Logo section */
+
+.logo {
+    padding: 25px 0;
+}
+
+
+/* App alerts */
+
+.alert {
+    display: none;
+}
