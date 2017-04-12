@@ -1,4 +1,4 @@
-// File-name-changer module
+// File-name-changer Controller module
 
 'use strict';
 
@@ -9,7 +9,8 @@ const appObjects = {
     chooseFilesAlert: document.getElementsByClassName('alert-warning'),
     appSuccessAlert: document.getElementsByClassName('alert-success'),
     filesQuantity: document.getElementById('files-quantity'),
-    filesTable: document.getElementById('files-table-list')
+    filesTable: document.getElementById('files-table-list'),
+    alertContainerSecond: document.getElementById('alert-container-second')
 };
 
 // Work files directory
@@ -43,46 +44,27 @@ function chooseFiles() {
     });
 }
 
-// Get list of files, copy and rename them
-function copyAndRenameFiles() {
-    recursive(filesDirectory, function (error, allFiles) {
-        if (error) {
-            console.log('\n X Wystąpił błąd, spróbuj jeszcze raz bądź sprawdź poprawność ustawień. \n');
-            return;
-        }
-
-        allFiles.forEach(function (fileName) {
-            var fileOutput = fileName.split('\\');
-            fileOutput.shift();
-            var fileOnlyName = fileOutput.pop().escapeDiacritics();
-            var fileOutputPath = fileOutput.join('\\');
-            var fileOutputPathWithout = fileOutputPath.escapeDiacritics();
-            fse.ensureDir(baseDirectory + currentDateAndTime + '\\' + fileOutputPathWithout);
-            fse.copy(fileName, baseDirectory + currentDateAndTime + '\\' + fileOutputPathWithout + '\\' + fileOnlyName, err => {
-                if (err) {
-                    return console.error(err);
-                }
-                console.log('\n✔ KOPIOWANIE ZAKOŃCZONE \n' + 'Folder docelowy: ' + baseDirectory + currentDateAndTime + '    ' + fileOnlyName + '\n');
-                appObjects.appSuccessAlert[0].style.display = 'block';
-                appObjects.filesTable.innerHTML = "";
-                appObjects.filesQuantity.style.display = 'none';
-                appObjects.startApp.setAttribute('disabled', 'disabled');
-            });
-        });
-    });
+// Success rename and copy files
+function successRenameAndCopy() {
+    appObjects.appSuccessAlert[0].style.display = 'block';
+    appObjects.filesTable.innerHTML = '';
+    appObjects.filesQuantity.style.display = 'none';
+    appObjects.startApp.setAttribute('disabled', 'disabled');
 }
 
+// Choose files to rename
 appObjects.chooseFiles.onclick = function () {
-    document.getElementById('alert-container-second').innerHTML += '<div id="app-success-alert" class="alert alert-success alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Zmiana nazw plików zakończona!</strong></div>';
+    appObjects.alertContainerSecond.innerHTML += '<div id="app-success-alert" class="alert alert-success alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Zmiana nazw plików zakończona!</strong></div>';
     appObjects.appSuccessAlert[0].style.display = 'none';
     appObjects.chooseFilesAlert[0].style.display = 'none';
     appObjects.startApp.setAttribute('disabled', 'disabled');
     appObjects.filesQuantity.style.display = 'none';
-    appObjects.filesTable.innerHTML = "";
+    appObjects.filesTable.innerHTML = '';
     console.clear();
-    chooseFiles();
+    return chooseFiles();
 };
 
+// Start files name change
 appObjects.startApp.onclick = function () {
-    createDirectory(copyAndRenameFiles);
+    return createDirectory(renameAndCopyFiles);
 };

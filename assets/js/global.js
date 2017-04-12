@@ -34,11 +34,11 @@ var currentDateAndTime;
 function createDirectory(callback) {
     currentDateAndTime = getDateAndTime();
     fse.mkdirSync(baseDirectory + currentDateAndTime);
-    callback();
+    return callback();
 }
 
 // Replace all polish diacritics and spaces
-String.prototype.escapeDiacritics = function () {
+String.prototype.removeDiacritics = function () {
     return this
         .replace(/ą/g, 'a').replace(/Ą/g, 'A')
         .replace(/ć/g, 'c').replace(/Ć/g, 'C')
