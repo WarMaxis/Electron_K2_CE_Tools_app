@@ -1,7 +1,7 @@
 {
-    "name": "file-name-changer",
-    "version": "1.0.2",
-    "description": "Program służący do zamiany nazw plików (pozbycie się polskich znaków oraz spacji).",
+    "name": "K2 CE Tools Electron App",
+    "version": "1.0.3",
+    "description": "Pakiet narzędzi do usprawnienia pracy w dziale CE.",
     "main": "main.js",
     "scripts": {
         "start": "electron ."
