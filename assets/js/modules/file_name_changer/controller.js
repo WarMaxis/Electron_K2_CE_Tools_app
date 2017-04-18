@@ -73,7 +73,6 @@ function successRenameAndCopy() {
 
 // Choose files to rename
 appObjects.chooseFiles.onclick = function () {
-    appObjects.alertContainerSecond.innerHTML += htmlMarkup.appSuccessAlert;
     appObjects.filesTable.innerHTML = '';
 
     appObjects.appSuccessAlert[0].style.display = 'none';
@@ -89,5 +88,7 @@ appObjects.chooseFiles.onclick = function () {
 
 // Start files name change
 appObjects.startApp.onclick = function () {
+    appObjects.alertContainerSecond.innerHTML += htmlMarkup.appSuccessAlert;
+
     return createDirectory(renameAndCopyFiles);
 };
