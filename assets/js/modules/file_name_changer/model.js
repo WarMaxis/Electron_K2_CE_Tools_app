@@ -3,6 +3,8 @@
 'use strict';
 
 // Get list of files, rename and copy them
+var filesQuantity = 0;
+
 function renameAndCopyFiles() {
     recursive(filesDirectory, function (error, allFiles) {
         if (error) {
@@ -22,7 +24,16 @@ function renameAndCopyFiles() {
                         return console.error(err);
                     } else {
                         console.log('\n ✔ KOPIOWANIE ZAKOŃCZONE \n' + 'Folder docelowy: ' + baseDirectory + currentDateAndTime + '    ' + fileOnlyName + '\n');
-                        return successRenameAndCopy();
+
+                        filesQuantity += 1;
+
+                        if (filesQuantity === allFiles.length) {
+                            console.log('\n ✔ ✔ ✔ WSZYSTKIE PLIKI SKOPIOWANE ✔ ✔ ✔ \n');
+
+                            filesQuantity = 0;
+
+                            return document.dispatchEvent(successEvent);
+                        }
                     }
                 });
             });

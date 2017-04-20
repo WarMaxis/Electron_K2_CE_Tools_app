@@ -60,7 +60,7 @@ function chooseFiles() {
 }
 
 // Success rename and copy files
-function successRenameAndCopy() {
+document.addEventListener('successEvent', function successRenameAndCopy() {
     appObjects.filesTable.innerHTML = '';
 
     appObjects.appSuccessAlert[0].style.display = 'block';
@@ -69,7 +69,7 @@ function successRenameAndCopy() {
     appObjects.startApp.setAttribute('disabled', 'disabled');
 
     return;
-}
+}, false);
 
 // Choose files to rename
 appObjects.chooseFiles.onclick = function () {

@@ -51,3 +51,6 @@ String.prototype.removeDiacritics = function () {
         .replace(/ź/g, 'z').replace(/Ź/g, 'Z')
         .replace(/ /g, '_');
 };
+
+// Create custom success event
+const successEvent = new Event('successEvent');
