@@ -10,14 +10,14 @@ const appObjects = {
     appSuccessAlert: document.getElementsByClassName('alert-success'),
     filesQuantity: document.getElementById('files-quantity'),
     filesTable: document.getElementById('files-table-list'),
-    alertContainerSecond: document.getElementById('alert-container-second')
+    alertContainerFirst: document.getElementById('alert-container-first'),
+    alertContainerSuccess: document.getElementById('alert-container-success')
 };
 
 // HTML objects markup
 const htmlMarkup = {
     chooseFilesAlert: '<div id="choose-files-alert" class="alert alert-warning alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Nie wybrałeś żadnego folderu!</strong></div>',
     appSuccessAlert: '<div id="app-success-alert" class="alert alert-success alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><strong>Zmiana nazw plików zakończona!</strong></div>'
-
 };
 
 // Work files directory
@@ -30,7 +30,7 @@ function chooseFiles() {
     }, function (folderPaths) {
         // folderPaths is an array that contains all the selected paths
         if (folderPaths === undefined) {
-            document.getElementById('alert-container-first').innerHTML += htmlMarkup.chooseFilesAlert;
+            appObjects.alertContainerFirst.innerHTML += htmlMarkup.chooseFilesAlert;
 
             appObjects.chooseFilesAlert[0].style.display = 'block';
             appObjects.filesQuantity.style.display = 'none';
@@ -88,7 +88,7 @@ appObjects.chooseFiles.onclick = function () {
 
 // Start files name change
 appObjects.startApp.onclick = function () {
-    appObjects.alertContainerSecond.innerHTML += htmlMarkup.appSuccessAlert;
+    appObjects.alertContainerSuccess.innerHTML += htmlMarkup.appSuccessAlert;
 
     return createDirectory(renameAndCopyFiles);
 };
