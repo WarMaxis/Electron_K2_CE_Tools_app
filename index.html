@@ -47,7 +47,7 @@
                     </button>
 
                     <div id="alert-container-first">
-                        <div id="choose-files-alert" class="alert alert-warning alert-dismissible fade in" role="alert">
+                        <div class="alert alert-warning alert-dismissible fade in" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
@@ -55,15 +55,33 @@
                         </div>
                     </div>
 
+                    <button id="app-choose-directory-button" type="button" class="btn btn-primary btn-block" disabled="disabled">
+                        Wybierz folder docelowy
+                    </button>
+
+                    <div id="alert-container-choose-directory">
+                        <div class="alert alert-warning alert-dismissible fade in alert-choose-directory" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Nie wybrałeś żadnego folderu!</strong>
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong id="output-directory"></strong>
+                        </div>
+                    </div>
+
                     <div class="button-start-container">
-                        <button id="app-start-button" type="button" class="btn btn-primary btn-block" disabled="disabled">
-                            Zamień nazwy plików
+                        <button id="app-start-button" type="button" class="btn btn-success btn-block" disabled="disabled">
+                            <strong>
+                                Zamień nazwy plików
+                            </strong>
                         </button>
                         <span id="files-quantity" class="badge files-number"></span>
                     </div>
 
                     <div id="alert-container-success">
-                        <div id="app-success-alert" class="alert alert-success alert-dismissible fade in" role="alert">
+                        <div class="alert alert-success alert-dismissible fade in" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
@@ -78,7 +96,7 @@
                     <table class="table table-bordered files-table">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th class="table-first-col">#</th>
                                 <th>Ścieżka pliku</th>
                             </tr>
                         </thead>
