@@ -27,7 +27,7 @@ function getDateAndTime() {
 }
 
 // Create new directory base on current system date and time
-const baseDirectory = '../';
+var baseDirectory = '../';
 
 var currentDateAndTime;
 

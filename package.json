@@ -1,6 +1,6 @@
 {
     "name": "K2-CE-Tools-Electron-App",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "Pakiet narzędzi do usprawnienia pracy w dziale CE.",
     "main": "main.js",
     "scripts": {
