@@ -34,7 +34,7 @@ var currentDateAndTime;
 function createDirectory(callback) {
     currentDateAndTime = getDateAndTime();
     fse.mkdirSync(baseDirectory + currentDateAndTime);
-    return callback();
+    return callback;
 }
 
 // Replace all polish diacritics and spaces
@@ -50,6 +50,13 @@ String.prototype.removeDiacritics = function () {
         .replace(/ż/g, 'z').replace(/Ż/g, 'Z')
         .replace(/ź/g, 'z').replace(/Ź/g, 'Z')
         .replace(/ /g, '_');
+};
+
+// Remove custom diacritics
+String.prototype.removeDiacriticsCustom = function (customDiacritic) {
+    var customDiacriticPattern = new RegExp(customDiacritic, 'g');
+
+    return this.replace(customDiacriticPattern, '');
 };
 
 // Create custom success event

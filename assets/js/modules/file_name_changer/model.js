@@ -5,7 +5,7 @@
 // Get list of files, rename and copy them
 var filesQuantity = 0;
 
-function renameAndCopyFiles() {
+function renameAndCopyFiles(customDiacritic) {
     recursive(filesDirectory, function (error, allFiles) {
         if (error) {
             console.log('\n X Wystąpił błąd, spróbuj jeszcze raz bądź sprawdź poprawność ustawień. \n');
@@ -14,9 +14,9 @@ function renameAndCopyFiles() {
             allFiles.forEach(function (fileName) {
                 var fileOutput = fileName.split('\\');
                 fileOutput.shift();
-                var fileOnlyName = fileOutput.pop().removeDiacritics(),
+                var fileOnlyName = fileOutput.pop().removeDiacritics().removeDiacriticsCustom(customDiacritic),
                     fileOutputPath = fileOutput.join('\\'),
-                    fileOutputPathWithoutDiacritics = fileOutputPath.removeDiacritics();
+                    fileOutputPathWithoutDiacritics = fileOutputPath.removeDiacritics().removeDiacriticsCustom(customDiacritic);
 
                 fse.ensureDir(baseDirectory + currentDateAndTime + '\\' + fileOutputPathWithoutDiacritics);
                 fse.copy(fileName, baseDirectory + currentDateAndTime + '\\' + fileOutputPathWithoutDiacritics + '\\' + fileOnlyName, function (err) {
