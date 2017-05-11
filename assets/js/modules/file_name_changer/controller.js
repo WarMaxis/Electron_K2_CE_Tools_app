@@ -7,6 +7,7 @@ const appObjects = {
     chooseFiles: document.getElementById('app-choose-files-button'),
     chooseDirectory: document.getElementById('app-choose-directory-button'),
     startApp: document.getElementById('app-start-button'),
+    addCustomDiacritic: document.getElementById('app-add-custom-diacritic-button'),
     chooseFilesAlert: document.getElementsByClassName('alert-warning'),
     chooseDirectoryAlert: document.getElementsByClassName('alert-choose-directory'),
     outputDirectoryAlert: document.getElementsByClassName('alert-info'),
@@ -16,7 +17,10 @@ const appObjects = {
     alertContainerFirst: document.getElementById('alert-container-first'),
     alertContainerDirectory: document.getElementById('alert-container-choose-directory'),
     alertContainerSuccess: document.getElementById('alert-container-success'),
-    outputDirectory: document.getElementById('output-directory')
+    outputDirectory: document.getElementById('output-directory'),
+    inputDiacritic: document.getElementById('special-diacritic-input'),
+    addButtonConfirmDiacritic: document.getElementById('app-confirm-special-diacritic'),
+    inputAlert: document.getElementsByClassName('bg-danger')[0]
 };
 
 // HTML objects markup
@@ -86,6 +90,7 @@ function chooseDirectory() {
             appObjects.outputDirectory.innerHTML = folderPaths[0];
 
             appObjects.startApp.removeAttribute('disabled');
+            appObjects.addCustomDiacritic.removeAttribute('disabled');
 
             appObjects.filesQuantity.style.opacity = '1.0';
 
@@ -107,6 +112,7 @@ appObjects.chooseFiles.onclick = function () {
 
     appObjects.chooseDirectory.setAttribute('disabled', 'disabled');
     appObjects.startApp.setAttribute('disabled', 'disabled');
+    appObjects.addCustomDiacritic.setAttribute('disabled', 'disabled');
 
     appObjects.filesQuantity.style.opacity = '0.5';
 
@@ -123,17 +129,33 @@ appObjects.chooseDirectory.onclick = function () {
     appObjects.chooseFilesAlert[0].style.display = 'none';
 
     appObjects.startApp.setAttribute('disabled', 'disabled');
+    appObjects.addCustomDiacritic.setAttribute('disabled', 'disabled');
 
     appObjects.filesQuantity.style.opacity = '0.5';
 
     return chooseDirectory();
 };
 
+// Add custom diacritic to remove from files name
+appObjects.addButtonConfirmDiacritic.onclick = function () {
+    var specialDiacritic = appObjects.inputDiacritic.value;
+
+    if (/[A-Za-z0-9]/i.test(specialDiacritic) || specialDiacritic === '') {
+        appObjects.inputAlert.style.display = 'block';
+    }
+};
+
+appObjects.inputDiacritic.onfocus = function () {
+    if (appObjects.inputAlert.style.display === 'block') {
+        appObjects.inputAlert.style.display = 'none';
+    }
+};
+
 // Start files name change
 appObjects.startApp.onclick = function () {
     appObjects.alertContainerSuccess.innerHTML += htmlMarkup.appSuccessAlert;
 
-    return createDirectory(renameAndCopyFiles);
+    return createDirectory(renameAndCopyFiles('!'));
 };
 
 // Success rename and copy files

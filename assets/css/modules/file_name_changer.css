@@ -4,7 +4,8 @@
 /* Buttons */
 
 #app-start-button,
-#app-choose-directory-button {
+#app-choose-directory-button,
+#app-add-custom-diacritic-button {
     margin-top: 15px;
 }
 
@@ -45,4 +46,15 @@
 
 #output-directory {
     word-wrap: break-word;
+}
+
+
+/* Input alert */
+
+.bg-danger {
+    margin-top: 5px;
+    padding: 5px 0 5px 14px;
+    border-radius: 4px;
+    font-weight: bold;
+    display: none;
 }

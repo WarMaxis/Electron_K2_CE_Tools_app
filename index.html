@@ -45,7 +45,6 @@
                     <button id="app-choose-files-button" type="button" class="btn btn-default btn-block">
                         Wybierz folder z plikami
                     </button>
-
                     <div id="alert-container-first">
                         <div class="alert alert-warning alert-dismissible fade in" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -58,7 +57,6 @@
                     <button id="app-choose-directory-button" type="button" class="btn btn-primary btn-block" disabled="disabled">
                         Wybierz folder docelowy
                     </button>
-
                     <div id="alert-container-choose-directory">
                         <div class="alert alert-warning alert-dismissible fade in alert-choose-directory" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -73,6 +71,15 @@
                         </strong>
                     </div>
 
+                    <button id="app-add-custom-diacritic-button" type="button" class="btn btn-warning btn-block" disabled="disabled" data-toggle="modal" data-target="#add-special-diacritic-modal">
+                        Dodaj znak specjalny do usunięcia (opcjonalnie)
+                    </button>
+                    <div class="alert alert-warning" role="alert">
+                        <strong>
+                            <span id="special-diacritic"></span>
+                        </strong>
+                    </div>
+
                     <div class="button-start-container">
                         <button id="app-start-button" type="button" class="btn btn-success btn-block" disabled="disabled">
                             <strong>
@@ -81,7 +88,6 @@
                         </button>
                         <span id="files-quantity" class="badge files-number"></span>
                     </div>
-
                     <div id="alert-container-success">
                         <div class="alert alert-success alert-dismissible fade in" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -120,6 +126,30 @@
             </div>
         </footer>
 
+        <!-- Modal -->
+        <div class="modal fade" id="add-special-diacritic-modal" tabindex="-1" role="dialog" aria-labelledby="Add special diacritic">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="ModalLabel">Dodaj znak specjalny do usunięcia</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <input id="special-diacritic-input" type="text" class="form-control" placeholder="Wpisz tylko jeden znak specjalny!" maxlength="1">
+                        <p class="bg-danger">Podaj poprawny znak specjalny!</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                        <button id="app-confirm-special-diacritic" type="button" class="btn btn-warning">Zapisz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 
@@ -127,6 +157,7 @@
     window.jQuery = window.$ = require('./assets/js/jquery-3.2.0.min.js');
     require('./assets/js/bootstrap.min.js');
     require('./renderer.js');
+
 </script>
 
 <script src="assets/js/imports.js"></script>
