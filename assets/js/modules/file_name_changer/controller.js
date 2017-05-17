@@ -25,7 +25,8 @@ const appObjects = {
     inputAlert: document.getElementsByClassName('bg-danger')[0],
     exitModal: document.getElementById('app-exit-modal'),
     appModal: document.getElementById('add-special-diacritic-modal'),
-    closeButtonModal: document.getElementById('app-close-modal-button')
+    closeButtonModal: document.getElementById('app-close-modal-button'),
+    spinnerModal: document.getElementById('spinner-modal')
 };
 
 
@@ -127,6 +128,8 @@ appObjects.chooseFiles.onclick = function () {
 
     appObjects.filesQuantity.style.opacity = '0.5';
 
+    customDiacritic = '';
+
     console.clear();
 
     return chooseFiles();
@@ -145,6 +148,8 @@ appObjects.chooseDirectory.onclick = function () {
     appObjects.addCustomDiacritic.setAttribute('disabled', 'disabled');
 
     appObjects.filesQuantity.style.opacity = '0.5';
+
+    customDiacritic = '';
 
     return chooseDirectory();
 };
@@ -196,6 +201,8 @@ appObjects.closeButtonModal.onclick = function () {
 appObjects.startApp.onclick = function () {
     appObjects.alertContainerSuccess.innerHTML += htmlMarkup.appSuccessAlert;
 
+    $('#spinner-modal').modal('show');
+
     return createDirectory(renameAndCopyFiles(customDiacritic));
 };
 
@@ -212,6 +219,8 @@ document.addEventListener('successEvent', function successRenameAndCopy() {
 
     appObjects.startApp.setAttribute('disabled', 'disabled');
     appObjects.chooseDirectory.setAttribute('disabled', 'disabled');
+
+    $('#spinner-modal').modal('hide');
 
     customDiacritic = '';
 
