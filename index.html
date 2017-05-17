@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>File Name Changer || K2 CE Tools by Michał Milanowski</title>
+    <title>K2 CE Tools by Michał Milanowski</title>
 
     <!-- Bootstrap -->
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
@@ -13,8 +13,13 @@
     <!-- Main CSS -->
     <link href="./assets/css/main.css" rel="stylesheet">
 
-    <!-- Module CSS -->
-    <link href="./assets/css/modules/file_name_changer.css" rel="stylesheet">
+    <!-- Main app page styles -->
+    <style>
+        .btn {
+            margin-top: 20px;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -30,9 +35,11 @@
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
                     <div class="jumbotron">
-                        <h2>File Name Changer</h2>
-                        <p>Narzędzie do zmiany nazw plików
-                            <br>(usuwa polskie znaki oraz spacje)
+                        <h2>K2 CE Tools</h2>
+                        <p>
+                            Zbiór narzędzi ułatwiających
+                            <br>i usprawniających pracę
+                            <br>w zespole Content Editors
                         </p>
                     </div>
                 </div>
@@ -41,77 +48,12 @@
 
         <main>
             <div class="row">
-                <div class="col-sm-4 col-sm-offset-4">
-
-                    <button id="app-choose-files-button" type="button" class="btn btn-default btn-block">
-                        Wybierz folder z plikami
-                    </button>
-                    <div id="alert-container-first">
-                        <div class="alert alert-warning alert-dismissible fade in" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            <strong>Nie wybrałeś żadnego folderu!</strong>
-                        </div>
-                    </div>
-
-                    <button id="app-choose-directory-button" type="button" class="btn btn-primary btn-block" disabled="disabled">
-                        Wybierz folder docelowy
-                    </button>
-                    <div id="alert-container-choose-directory">
-                        <div class="alert alert-warning alert-dismissible fade in alert-choose-directory" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            <strong>Nie wybrałeś żadnego folderu!</strong>
-                        </div>
-                    </div>
-                    <div class="alert alert-info" role="alert">
-                        <strong>
-                            <span id="output-directory"></span>
-                        </strong>
-                    </div>
-
-                    <button id="app-add-custom-diacritic-button" type="button" class="btn btn-warning btn-block" disabled="disabled" data-toggle="modal" data-target="#add-special-diacritic-modal">
-                        Dodaj znak specjalny do usunięcia (opcjonalnie)
-                    </button>
-                    <div id="alert-special-diacritic" class="alert alert-warning" role="alert">
-                        <strong>
-                            Dodatkowy znak specjalny: <span id="special-diacritic"></span>
-                        </strong>
-                    </div>
-
-                    <div class="button-start-container">
-                        <button id="app-start-button" type="button" class="btn btn-success btn-block" disabled="disabled">
-                            <strong>
-                                Zamień nazwy plików
-                            </strong>
-                        </button>
-                        <span id="files-quantity" class="badge files-number"></span>
-                    </div>
-                    <div id="alert-container-success">
-                        <div class="alert alert-success alert-dismissible fade in" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            <strong>Zmiana nazw plików zakończona!</strong>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3">
-                    <table class="table table-bordered files-table">
-                        <thead>
-                            <tr>
-                                <th class="table-first-col">#</th>
-                                <th>Ścieżka pliku</th>
-                            </tr>
-                        </thead>
-                        <tbody id="files-table-list"></tbody>
-                    </table>
+                <div class="col-sm-4 col-sm-offset-4 text-center">
+                    <h3>
+                        <strong>Wybierz moduł aplikacji:</strong>
+                    </h3>
+                    <a class="btn btn-default btn-lg" href="app_modules/file_name_changer.html" role="button">File Name Changer</a>
+                    <a class="btn btn-default btn-lg" href="app_modules/images_downloader.html" role="button">Images Downloader</a>
                 </div>
             </div>
         </main>
@@ -121,65 +63,12 @@
                 <div class="col-sm-6 col-sm-offset-3">
                     <div class="panel panel-default">
                         <div class="panel-body text-center">
-                            File Name Changer || K2 CE Tools, made with <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> by <strong><a href="https://www.linkedin.com/in/michalmilanowski/" target="_blank" title="Best Front-End Developer EVER!!!">Michał Milanowski</a></strong>, version 2.2.0 (16.05.2017)
+                            K2 CE Tools, made with <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> by <strong><a href="https://www.linkedin.com/in/michalmilanowski/" target="_blank" title="Best Front-End Developer EVER!!!">Michał Milanowski</a></strong>, version 2.2.0 (16.05.2017)
                         </div>
                     </div>
                 </div>
             </div>
         </footer>
-
-        <!-- Modal -->
-        <div class="modal fade" id="add-special-diacritic-modal" tabindex="-1" role="dialog" aria-labelledby="Add special diacritic" data-backdrop="static">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button id="app-close-modal-button" type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="ModalLabel">Dodaj znak specjalny do usunięcia</h4>
-                    </div>
-
-                    <div class="modal-body">
-                        <input id="special-diacritic-input" type="text" class="form-control" placeholder="Wpisz tylko jeden znak specjalny!" maxlength="1">
-                        <p class="bg-danger">Podaj poprawny znak specjalny!</p>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button id="app-exit-modal" type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
-                        <button id="app-confirm-special-diacritic" type="button" class="btn btn-warning">Zapisz</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Spinner modal -->
-        <div class="modal fade" id="spinner-modal" tabindex="-1" role="dialog" aria-labelledby="Spinner modal" data-backdrop="static">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="ModalLabel2">Zamiana nazw plików w trakcie</h4>
-                    </div>
-
-                    <div class="sk-circle">
-                        <div class="sk-circle1 sk-child"></div>
-                        <div class="sk-circle2 sk-child"></div>
-                        <div class="sk-circle3 sk-child"></div>
-                        <div class="sk-circle4 sk-child"></div>
-                        <div class="sk-circle5 sk-child"></div>
-                        <div class="sk-circle6 sk-child"></div>
-                        <div class="sk-circle7 sk-child"></div>
-                        <div class="sk-circle8 sk-child"></div>
-                        <div class="sk-circle9 sk-child"></div>
-                        <div class="sk-circle10 sk-child"></div>
-                        <div class="sk-circle11 sk-child"></div>
-                        <div class="sk-circle12 sk-child"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 </body>
@@ -193,7 +82,5 @@
 
 <script src="assets/js/imports.js"></script>
 <script src="assets/js/global.js"></script>
-<script src="assets/js/modules/file_name_changer/model.js"></script>
-<script src="assets/js/modules/file_name_changer/controller.js"></script>
 
 </html>
