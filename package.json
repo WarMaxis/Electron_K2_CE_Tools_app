@@ -11,7 +11,13 @@
     "devDependencies": {
         "electron": "~1.6.2",
         "fs-extra": "^2.1.2",
-        "recursive-readdir": "^2.1.1"
+        "recursive-readdir": "^2.1.1",
+
+        "imagemin": "^5.2.2",
+        "imagemin-mozjpeg": "^6.0.0",
+        "imagemin-pngquant": "^5.0.0",
+        "request": "^2.80.0",
+        "request-progress": "^3.0.0"
     },
     "dependencies": {
         "electron-packager": "^8.6.0"
