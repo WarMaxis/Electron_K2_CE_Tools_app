@@ -161,7 +161,7 @@ var customDiacritic = '';
 appObjects.addButtonConfirmDiacritic.onclick = function () {
     var specialDiacritic = appObjects.inputDiacritic.value;
 
-    if (/[A-Za-z0-9]/i.test(specialDiacritic) || specialDiacritic === '') {
+    if (/[A-Za-z0-9.ąćęłńóśźżĄĆĘŁŃÓŚŹŻ /]/i.test(specialDiacritic) || specialDiacritic === '') {
         appObjects.inputAlert.style.display = 'block';
     } else {
         customDiacritic = specialDiacritic;
@@ -219,6 +219,7 @@ document.addEventListener('successEvent', function successRenameAndCopy() {
 
     appObjects.startApp.setAttribute('disabled', 'disabled');
     appObjects.chooseDirectory.setAttribute('disabled', 'disabled');
+    appObjects.addCustomDiacritic.setAttribute('disabled', 'disabled');
 
     $('#spinner-modal').modal('hide');
 
