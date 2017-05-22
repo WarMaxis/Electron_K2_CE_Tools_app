@@ -17,7 +17,12 @@ const appObjects = {
     alertContainerDirectory: document.getElementById('alert-container-choose-directory'),
     alertContainerSuccess: document.getElementById('alert-container-success'),
     outputDirectory: document.getElementById('output-directory'),
-    spinnerModal: document.getElementById('spinner-modal')
+    spinnerModal: document.getElementById('spinner-modal'),
+    modalSuccessQuantity: document.getElementById('app-modal-success-quantity'),
+    modalFailQuantity: document.getElementById('app-modal-fail-quantity'),
+    spinner: document.getElementsByClassName('sk-circle')[0],
+    modalTitle: document.getElementsByClassName('modal-title')[0],
+    modalAlertIcon: document.getElementsByClassName('glyphicon-warning-sign')[0]
 };
 
 
@@ -148,17 +153,72 @@ appObjects.startApp.onclick = function () {
 
 
 // Success download and compress files
+var successQuantity = 0;
+
 document.addEventListener('successEvent', function successDownloadAndCompress() {
-    appObjects.filesTable.innerHTML = '';
+    successQuantity = successQuantity + 1;
 
-    appObjects.appSuccessAlert[0].style.display = 'block';
-    appObjects.filesQuantity.style.display = 'none';
-    appObjects.outputDirectoryAlert[0].style.display = 'none';
+    if (successQuantity === urlList.length) {
+        appObjects.modalSuccessQuantity.textContent = 'Pobrane i skompresowane pliki: ' + successQuantity + ' / ' + urlList.length;
 
-    appObjects.startApp.setAttribute('disabled', 'disabled');
-    appObjects.chooseDirectory.setAttribute('disabled', 'disabled');
+        appObjects.filesTable.innerHTML = '';
 
-    $('#spinner-modal').modal('hide');
+        appObjects.appSuccessAlert[0].style.display = 'block';
+        appObjects.filesQuantity.style.display = 'none';
+        appObjects.outputDirectoryAlert[0].style.display = 'none';
+
+        appObjects.startApp.setAttribute('disabled', 'disabled');
+        appObjects.chooseDirectory.setAttribute('disabled', 'disabled');
+
+        $('#spinner-modal').modal('hide');
+
+        successQuantity = 0;
+        errorQuantity = 0;
+
+        appObjects.modalSuccessQuantity.textContent = '';
+
+        appObjects.modalSuccessQuantity.style.display = 'none';
+    } else if ((successQuantity + errorQuantity) === urlList.length) {
+        appObjects.modalSuccessQuantity.textContent = 'Pobrane i skompresowane pliki: ' + successQuantity + ' / ' + urlList.length;
+
+        appObjects.spinner.style.display = 'none';
+        appObjects.modalAlertIcon.style.display = 'block';
+
+        appObjects.modalTitle.textContent = 'Wystąpiły błędy pobierania plików';
+
+        errorQuantity = 0;
+        successQuantity = 0;
+    } else {
+        appObjects.modalSuccessQuantity.style.display = 'block';
+
+        appObjects.modalSuccessQuantity.textContent = 'Pobrane i skompresowane pliki: ' + successQuantity + ' / ' + urlList.length;
+    }
+
+    return;
+}, false);
+
+
+// Fail download files
+var errorQuantity = 0;
+
+document.addEventListener('errorEvent', function () {
+    errorQuantity = errorQuantity + 1;
+
+    if ((successQuantity + errorQuantity) === urlList.length) {
+        appObjects.modalFailQuantity.textContent = 'Błędy pobierania plików: ' + errorQuantity + ' / ' + urlList.length;
+
+        appObjects.spinner.style.display = 'none';
+        appObjects.modalAlertIcon.style.display = 'block';
+
+        appObjects.modalTitle.textContent = 'Wystąpiły błędy pobierania plików';
+
+        errorQuantity = 0;
+        successQuantity = 0;
+    } else {
+        appObjects.modalFailQuantity.style.display = 'block';
+
+        appObjects.modalFailQuantity.textContent = 'Błędy pobierania plików: ' + errorQuantity + ' / ' + urlList.length;
+    }
 
     return;
 }, false);

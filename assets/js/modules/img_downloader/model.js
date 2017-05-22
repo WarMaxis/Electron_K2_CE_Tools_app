@@ -21,14 +21,11 @@ function getURLsList(listPath) {
 // Download images from URLs
 function downloadImages() {
     var download = function (url, destination, callback) {
-        progress(request.get(url), {
-                throttle: 10000,
-            })
+        request.get(url)
             .on('error', function (error) {
                 console.log(error);
-            })
-            .on('progress', function (state) {
-                console.log('progress', state);
+
+                document.dispatchEvent(errorEvent);
             })
             .pipe(fse.createWriteStream(destination))
             .on('close', callback);
@@ -40,6 +37,7 @@ function downloadImages() {
         console.log('\n✔ Rozpoczęcie pobierania pliku\n' + filenameFromUrl + '\n');
         download(string, filename, function () {
             console.log('\n✔ POBIERANIE ZAKOŃCZONE\n' + filename + '\n');
+
             compressImages(filenameFromUrl);
         });
     });
@@ -59,5 +57,7 @@ function compressImages(file) {
     ]
     }).then(files => {
         console.log('\n✔ KOMPRESJA ZAKOŃCZONA\n' + baseDirectory + currentDateAndTime + '/' + file + '\n');
+
+        document.dispatchEvent(successEvent);
     });
 }

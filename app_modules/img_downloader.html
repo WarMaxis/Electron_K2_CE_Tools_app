@@ -33,7 +33,7 @@
                         <h2>Images Downloader</h2>
                         <p>Narzędzie do pobierania
                             <br>i kompresji plików graficznych
-                            <br>z listy URL-ów w formacie .txt
+                            <br>z listy URL-ów w formacie .txt <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Scieżki URL muszą znajdować się w osobnych liniach w pliku tekstowym!"></span>
                         </p>
                     </div>
                 </div>
@@ -125,9 +125,6 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
                         <h4 class="modal-title" id="ModalLabel2">Pobieranie i kompresja plików w trakcie</h4>
                     </div>
 
@@ -144,6 +141,15 @@
                         <div class="sk-circle10 sk-child"></div>
                         <div class="sk-circle11 sk-child"></div>
                         <div class="sk-circle12 sk-child"></div>
+                    </div>
+
+                    <div class="text-center">
+                        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="app-modal-info-container">
+                        <p id="app-modal-success-quantity" class="text-center bg-success"></p>
+                        <p id="app-modal-fail-quantity" class="text-center bg-danger"></p>
                     </div>
                 </div>
             </div>

@@ -59,5 +59,6 @@ String.prototype.removeDiacriticsCustom = function (customDiacritic) {
     return this.replace(customDiacriticPattern, '');
 };
 
-// Create custom success event
-const successEvent = new Event('successEvent');
+// Create custom success and error event
+const successEvent = new Event('successEvent'),
+    errorEvent = new Event('errorEvent');
