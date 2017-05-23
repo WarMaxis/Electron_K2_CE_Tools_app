@@ -4,7 +4,8 @@
 /* Buttons */
 
 #app-start-button,
-#app-choose-directory-button {
+#app-choose-directory-button,
+#app-add-png-quality-button {
     margin-top: 15px;
 }
 
@@ -18,41 +19,6 @@
 .glyphicon-exclamation-sign {
     font-size: 14px;
     cursor: pointer;
-}
-
-
-/* Files table */
-
-.files-table {
-    margin-top: 30px;
-    table-layout: fixed;
-}
-
-.files-table td {
-    font-size: 12px;
-    word-wrap: break-word;
-}
-
-.table-first-col {
-    width: 30px;
-}
-
-
-/* Files counter */
-
-.files-number {
-    display: none;
-    position: absolute;
-    opacity: 0.5;
-    right: 10px;
-    bottom: 8px;
-}
-
-
-/* Output directory path */
-
-#output-directory {
-    word-wrap: break-word;
 }
 
 
