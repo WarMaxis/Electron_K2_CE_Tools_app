@@ -73,6 +73,15 @@
                         </strong>
                     </div>
 
+                    <button id="app-add-png-quality-button" type="button" class="btn btn-warning btn-block" disabled="disabled" data-toggle="modal" data-target="#add-png-quality-modal">
+                        Podaj docelową jakość plików PNG (opcjonalnie)
+                    </button>
+                    <div id="alert-png-quality" class="alert alert-warning" role="alert">
+                        <strong>
+                            Wybrana docelowa jakość plików PNG: <span id="png-quality"></span>
+                        </strong>
+                    </div>
+
                     <div class="button-start-container">
                         <button id="app-start-button" type="button" class="btn btn-success btn-block" disabled="disabled">
                             <strong>
@@ -119,6 +128,32 @@
                 </div>
             </div>
         </footer>
+
+        <!-- Modal -->
+        <div class="modal fade" id="add-png-quality-modal" tabindex="-1" role="dialog" aria-labelledby="Add PNG quality" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="app-close-modal-button" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="ModalLabel">Podaj docelową jakość plików PNG
+                            <br>(w %, im mniej tym mniejsze pliki)
+                        </h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <input id="png-quality-input" type="text" class="form-control" placeholder="Wpisz docelową jakość plików PNG!" maxlength="2">
+                        <p class="bg-danger">Wpisz poprawną liczbę!</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="app-exit-modal" type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+                        <button id="app-confirm-png-quality" type="button" class="btn btn-warning">Zapisz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Spinner modal -->
         <div class="modal fade" id="spinner-modal" tabindex="-1" role="dialog" aria-labelledby="Spinner modal" data-backdrop="static">

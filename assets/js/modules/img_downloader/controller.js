@@ -22,7 +22,16 @@ const appObjects = {
     modalFailQuantity: document.getElementById('app-modal-fail-quantity'),
     spinner: document.getElementsByClassName('sk-circle')[0],
     modalTitle: document.getElementsByClassName('modal-title')[0],
-    modalAlertIcon: document.getElementsByClassName('glyphicon-warning-sign')[0]
+    modalAlertIcon: document.getElementsByClassName('glyphicon-warning-sign')[0],
+    closeButtonModal: document.getElementById('app-close-modal-button'),
+    appModal: document.getElementById('add-png-quality-modal'),
+    exitModal: document.getElementById('app-exit-modal'),
+    inputAlert: document.getElementsByClassName('bg-danger')[0],
+    buttonConfirmPngQuality: document.getElementById('app-confirm-png-quality'),
+    pngQualityAlert: document.getElementById('png-quality'),
+    pngQualityContainer: document.getElementById('alert-png-quality'),
+    inputPngQuality: document.getElementById('png-quality-input'),
+    addPngQuality: document.getElementById('app-add-png-quality-button')
 };
 
 
@@ -57,6 +66,7 @@ function chooseURLsList() {
             return;
         } else {
             appObjects.chooseDirectory.removeAttribute('disabled');
+            appObjects.addPngQuality.removeAttribute('disabled');
 
             getURLsList(fileName[0]);
 
@@ -96,6 +106,7 @@ function chooseDirectory() {
             appObjects.outputDirectory.innerHTML = folderPaths[0];
 
             appObjects.startApp.removeAttribute('disabled');
+            appObjects.addPngQuality.removeAttribute('disabled');
 
             appObjects.filesQuantity.style.opacity = '1.0';
 
@@ -115,11 +126,15 @@ appObjects.chooseURLs.onclick = function () {
     appObjects.outputDirectoryAlert[0].style.display = 'none';
     appObjects.chooseURLsAlert[0].style.display = 'none';
     appObjects.filesQuantity.style.display = 'none';
+    appObjects.pngQualityContainer.style.display = 'none';
 
     appObjects.chooseDirectory.setAttribute('disabled', 'disabled');
     appObjects.startApp.setAttribute('disabled', 'disabled');
+    appObjects.addPngQuality.setAttribute('disabled', 'disabled');
 
     appObjects.filesQuantity.style.opacity = '0.5';
+
+    pngQuality = '80';
 
     console.clear();
 
@@ -133,12 +148,56 @@ appObjects.chooseDirectory.onclick = function () {
     appObjects.chooseDirectoryAlert[0].style.display = 'none';
     appObjects.appSuccessAlert[0].style.display = 'none';
     appObjects.chooseURLsAlert[0].style.display = 'none';
+    appObjects.pngQualityContainer.style.display = 'none';
 
     appObjects.startApp.setAttribute('disabled', 'disabled');
+    appObjects.addPngQuality.setAttribute('disabled', 'disabled');
 
     appObjects.filesQuantity.style.opacity = '0.5';
 
     return chooseDirectory();
+};
+
+
+// Add custom PNG output quality
+var pngQuality = '80';
+
+appObjects.buttonConfirmPngQuality.onclick = function () {
+    var userPngQuality = appObjects.inputPngQuality.value;
+
+    if (!/[0-9]/i.test(userPngQuality) || userPngQuality === '') {
+        appObjects.inputAlert.style.display = 'block';
+    } else {
+        pngQuality = userPngQuality;
+
+        appObjects.pngQualityAlert.innerHTML = userPngQuality;
+
+        appObjects.pngQualityContainer.style.display = 'block';
+
+        appObjects.exitModal.click();
+    }
+};
+
+appObjects.inputPngQuality.onfocus = function () {
+    if (appObjects.inputAlert.style.display === 'block') {
+        appObjects.inputAlert.style.display = 'none';
+    }
+};
+
+appObjects.exitModal.onclick = function () {
+    appObjects.inputPngQuality.value = '';
+
+    if (appObjects.inputAlert.style.display === 'block') {
+        appObjects.inputAlert.style.display = 'none';
+    }
+};
+
+appObjects.closeButtonModal.onclick = function () {
+    appObjects.inputPngQuality.value = '';
+
+    if (appObjects.inputAlert.style.display === 'block') {
+        appObjects.inputAlert.style.display = 'none';
+    }
 };
 
 
@@ -166,14 +225,17 @@ document.addEventListener('successEvent', function successDownloadAndCompress() 
         appObjects.appSuccessAlert[0].style.display = 'block';
         appObjects.filesQuantity.style.display = 'none';
         appObjects.outputDirectoryAlert[0].style.display = 'none';
+        appObjects.pngQualityContainer.style.display = 'none';
 
         appObjects.startApp.setAttribute('disabled', 'disabled');
         appObjects.chooseDirectory.setAttribute('disabled', 'disabled');
+        appObjects.addPngQuality.setAttribute('disabled', 'disabled');
 
         $('#spinner-modal').modal('hide');
 
         successQuantity = 0;
         errorQuantity = 0;
+        pngQuality = '80';
 
         appObjects.modalSuccessQuantity.textContent = '';
 

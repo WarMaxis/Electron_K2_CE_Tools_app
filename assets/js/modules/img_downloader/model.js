@@ -52,7 +52,7 @@ function compressImages(file) {
                 targa: false
             }),
         imageminPngquant({
-                quality: '80'
+                quality: pngQuality
             })
     ]
     }).then(files => {
