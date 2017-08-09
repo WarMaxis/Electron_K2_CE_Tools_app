@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ScreenShooter || K2 CE Tools by Michał Milanowski</title>
+
+    <!-- Bootstrap -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link href="../assets/css/main.css" rel="stylesheet">
+
+    <!-- Module CSS -->
+    <link href="../assets/css/modules/screen_shooter.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <img src="../assets/img/k2-logo.jpg" class="img-responsive logo" alt="K2 Logo" title="K2 - dla nas to możliwe">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="jumbotron">
+                        <h2>ScreenShooter</h2>
+                        <p>Narzędzie do automatycznego
+                            <br>robienia screenshotów stron internetowych
+                            <br>z listy URL-ów w formacie .txt <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Scieżki URL muszą znajdować się w osobnych liniach w pliku tekstowym!"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-4">
+
+                    <button id="app-choose-urls-button" type="button" class="btn btn-default btn-block">
+                        Wybierz plik z listą URL-ów (.txt)
+                    </button>
+                    <div id="alert-container-first">
+                        <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Nie wybrałeś żadnego pliku!</strong>
+                        </div>
+                    </div>
+
+                    <button id="app-choose-directory-button" type="button" class="btn btn-primary btn-block" disabled="disabled">
+                        Wybierz folder docelowy
+                    </button>
+                    <div id="alert-container-choose-directory">
+                        <div class="alert alert-warning alert-dismissible fade in alert-choose-directory" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Nie wybrałeś żadnego folderu!</strong>
+                        </div>
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        <strong>
+                            <span id="output-directory"></span>
+                        </strong>
+                    </div>
+
+                    <button id="app-add-remote-directory-button" type="button" class="btn btn-warning btn-block" disabled="disabled">
+                        Wybierz zdalny folder docelowy (opcjonalnie)
+                    </button>
+                    <div id="alert-container-remote-directory">
+                        <div class="alert alert-warning alert-dismissible fade in alert-remote-directory" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Nie wybrałeś żadnego folderu!</strong>
+                        </div>
+                    </div>
+                    <div class="alert alert-info remote-directory" role="alert">
+                        <strong>
+                            <span id="output-remote-directory"></span>
+                        </strong>
+                    </div>
+
+                    <div class="button-start-container">
+                        <button id="app-start-button" type="button" class="btn btn-success btn-block" disabled="disabled">
+                            <strong>
+                                Rozpocznij robienie screenshotów
+                            </strong>
+                        </button>
+                        <span id="screenshots-quantity" class="badge files-number"></span>
+                    </div>
+                    <div id="alert-container-success">
+                        <div class="alert alert-success alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Zapisywanie screenshotów zakończone!</strong>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <table class="table table-bordered files-table">
+                        <thead>
+                            <tr>
+                                <th class="table-first-col">#</th>
+                                <th>URL strony internetowej</th>
+                            </tr>
+                        </thead>
+                        <tbody id="files-table-list"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="row footer">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center">
+                            ScreenShooter || K2 CE Tools, made with <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> by <strong><a href="https://www.linkedin.com/in/michalmilanowski/" target="_blank" title="Best Front-End Developer EVER!!!">Michał Milanowski</a></strong>, version 3.0.0 (08.08.2017)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Spinner modal -->
+        <div class="modal fade" id="spinner-modal" tabindex="-1" role="dialog" aria-labelledby="Spinner modal" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="ModalLabel2">Robienie screenshotów w trakcie</h4>
+                    </div>
+
+                    <div class="sk-circle">
+                        <div class="sk-circle1 sk-child"></div>
+                        <div class="sk-circle2 sk-child"></div>
+                        <div class="sk-circle3 sk-child"></div>
+                        <div class="sk-circle4 sk-child"></div>
+                        <div class="sk-circle5 sk-child"></div>
+                        <div class="sk-circle6 sk-child"></div>
+                        <div class="sk-circle7 sk-child"></div>
+                        <div class="sk-circle8 sk-child"></div>
+                        <div class="sk-circle9 sk-child"></div>
+                        <div class="sk-circle10 sk-child"></div>
+                        <div class="sk-circle11 sk-child"></div>
+                        <div class="sk-circle12 sk-child"></div>
+                    </div>
+
+                    <div class="text-center">
+                        <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+                    </div>
+
+                    <div class="app-modal-info-container">
+                        <p id="app-modal-success-quantity" class="text-center bg-success"></p>
+                        <p id="app-modal-fail-quantity" class="text-center bg-danger"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<script>
+    window.jQuery = window.$ = require('../assets/js/jquery-3.2.0.min.js');
+    require('../assets/js/bootstrap.min.js');
+    require('../renderer.js');
+
+</script>
+
+<script src="../assets/js/imports.js"></script>
+<script src="../assets/js/global.js"></script>
+<script src="../assets/js/modules/screen_shooter/model.js"></script>
+<script src="../assets/js/modules/screen_shooter/controller.js"></script>
+
+</html>

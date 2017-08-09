@@ -1,0 +1,47 @@
+/* ScreenShooter module styles */
+
+
+/* Buttons */
+
+#app-start-button,
+#app-choose-directory-button,
+#app-add-remote-directory-button {
+    margin-top: 15px;
+}
+
+.button-start-container {
+    position: relative;
+}
+
+
+/* Additional information icon */
+
+.glyphicon-exclamation-sign {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+/* Modal screenshots status */
+
+.app-modal-info-container {
+    margin-bottom: 30px;
+}
+
+#app-modal-success-quantity,
+#app-modal-fail-quantity {
+    padding: 15px;
+    font-weight: bold;
+    display: none;
+}
+
+#app-modal-fail-quantity {
+    color: darkred;
+}
+
+.glyphicon-warning-sign {
+    display: none;
+    margin: 40px auto;
+    font-size: 80px;
+    color: darkred;
+}
