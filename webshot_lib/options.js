@@ -1,12 +1,12 @@
 // Options for the phantom script
 exports.phantom = {
   windowSize: {
-    width: 1024
-  , height: 768
+    width: 1920
+  , height: 1080
   }
 , shotSize: {
-    width: 'window'
-  , height: 'window'
+    width: 'all'
+  , height: 'all'
   }
 , shotOffset: {
     left: 0
