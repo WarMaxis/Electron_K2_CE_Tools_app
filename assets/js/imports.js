@@ -11,4 +11,7 @@ const fse = require('fs-extra'),
     progress = require('request-progress'),
     imagemin = require('imagemin'),
     imageminMozjpeg = require('imagemin-mozjpeg'),
-    imageminPngquant = require('imagemin-pngquant');
+    imageminPngquant = require('imagemin-pngquant'),
+
+    // Webshot module - https://github.com/brenden/node-webshot
+    webshot = require('../webshot_lib/webshot');

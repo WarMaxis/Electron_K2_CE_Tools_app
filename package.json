@@ -17,7 +17,13 @@
         "imagemin-mozjpeg": "^6.0.0",
         "imagemin-pngquant": "^5.0.0",
         "request": "^2.80.0",
-        "request-progress": "^3.0.0"
+        "request-progress": "^3.0.0",
+
+        "graceful-fs": "~3.0.4",
+        "cross-spawn": "^0.2.3",
+        "tmp": "~0.0.25",
+        "phantomjs-prebuilt": "^2.1.3",
+        "imagemagick": "git://github.com/rsms/node-imagemagick.git"
     },
     "dependencies": {
         "electron-packager": "^8.6.0"
