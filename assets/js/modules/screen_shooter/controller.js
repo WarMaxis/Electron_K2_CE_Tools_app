@@ -212,11 +212,13 @@ appObjects.addRemoteDirectory.onclick = function () {
 
 // Start making screenshots
 appObjects.startApp.onclick = function () {
+    appObjects.addRemoteDirectoryAlert[0].style.display = 'none';
+
     appObjects.alertContainerSuccess.innerHTML += htmlMarkup.appSuccessAlert;
 
     $('#spinner-modal').modal('show');
 
-    return;
+    return createDirectoryForScreenshots(makeScreenshots);
 };
 
 
@@ -234,9 +236,11 @@ document.addEventListener('successEvent', function successScreenshotsAndSaveFile
         appObjects.appSuccessAlert[0].style.display = 'block';
         appObjects.screenshotsQuantity.style.display = 'none';
         appObjects.outputDirectoryAlert[0].style.display = 'none';
+        appObjects.outputRemoteDirectoryAlert[0].style.display = 'none';
 
         appObjects.startApp.setAttribute('disabled', 'disabled');
         appObjects.chooseDirectory.setAttribute('disabled', 'disabled');
+        appObjects.addRemoteDirectory.setAttribute('disabled', 'disabled');
 
         $('#spinner-modal').modal('hide');
 
