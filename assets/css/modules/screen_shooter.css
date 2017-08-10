@@ -45,3 +45,10 @@
     font-size: 80px;
     color: darkred;
 }
+
+
+/* Output remote directory path */
+
+#output-remote-directory {
+    word-wrap: break-word;
+}
