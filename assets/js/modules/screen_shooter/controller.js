@@ -17,6 +17,7 @@ const appObjects = {
     outputDirectoryAlert: document.getElementsByClassName('alert-info'),
     addRemoteDirectoryAlert: document.getElementsByClassName('alert-remote-directory'),
     outputRemoteDirectoryAlert: document.getElementsByClassName('remote-directory'),
+    outputRemoteDirectorySuccessAlert: document.getElementsByClassName('remote-directory-success'),
     appSuccessAlert: document.getElementsByClassName('alert-success'),
 
     screenshotsQuantity: document.getElementById('screenshots-quantity'),
@@ -31,6 +32,7 @@ const appObjects = {
     // Output directories
     outputDirectory: document.getElementById('output-directory'),
     outputRemoteDirectory: document.getElementById('output-remote-directory'),
+    outputRemoteDirectorySuccess: document.getElementById('output-remote-directory-success'),
 
     // Modal
     spinnerModal: document.getElementById('spinner-modal'),
@@ -160,6 +162,7 @@ appObjects.chooseURLs.onclick = function () {
     appObjects.screenshotsQuantity.innerHTML = '';
 
     appObjects.appSuccessAlert[0].style.display = 'none';
+    appObjects.outputRemoteDirectorySuccessAlert[0].style.display = 'none';
     appObjects.chooseDirectoryAlert[0].style.display = 'none';
     appObjects.addRemoteDirectoryAlert[0].style.display = 'none';
     appObjects.outputDirectoryAlert[0].style.display = 'none';
@@ -174,6 +177,8 @@ appObjects.chooseURLs.onclick = function () {
     appObjects.screenshotsQuantity.style.opacity = '0.5';
 
     console.clear();
+
+    remoteDirectory = '';
 
     return chooseURLsList();
 };
@@ -244,7 +249,15 @@ document.addEventListener('successEvent', function successScreenshotsAndSaveFile
 
         $('#spinner-modal').modal('hide');
 
-        makeArchive(copyToRemoteDirectory);
+        if (remoteDirectory !== '') {
+            makeArchive(copyToRemoteDirectory);
+        }
+
+        document.addEventListener('zipDone', function () {
+            appObjects.outputRemoteDirectorySuccess.innerHTML = remoteDirectory + currentDateAndTime + '.zip';
+
+            appObjects.outputRemoteDirectorySuccessAlert[0].style.display = 'block';
+        }, false);
 
         successQuantity = 0;
         errorQuantity = 0;

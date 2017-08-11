@@ -69,6 +69,12 @@ function makeArchive(callback) {
 
 
 // Copy done .zip archive to remote directory
+const zipDoneEvent = new Event('zipDone');
+
 function copyToRemoteDirectory() {
     fse.createReadStream(baseDirectory + currentDateAndTime + '.zip').pipe(fse.createWriteStream(remoteDirectory + currentDateAndTime + '.zip'));
+
+    console.log('\n✔ ARCHIWUM .ZIP WYSŁANO NA ADRES ZDALNY:\n' + remoteDirectory + currentDateAndTime + '.zip' + '\n');
+
+    document.dispatchEvent(zipDoneEvent);
 }
