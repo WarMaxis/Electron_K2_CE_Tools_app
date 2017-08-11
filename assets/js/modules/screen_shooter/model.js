@@ -1,0 +1,55 @@
+// ScreenShooter Model module
+
+'use strict';
+
+// Create new directory base on current system date and time
+function createDirectoryForScreenshots(callback) {
+    currentDateAndTime = getDateAndTime();
+    fse.mkdirSync(baseDirectory + currentDateAndTime);
+    return callback();
+}
+
+
+// Get URLs list from .txt file
+var urlList = [];
+
+function getURLsList(listPath) {
+    urlList = fse.readFileSync(listPath).toString().split("\r\n");
+}
+
+
+// Remote directory path
+var remoteDirectory = '';
+
+
+// Make screenshots from URLs
+function makeScreenshots() {
+    urlList.forEach(function (string) {
+        var screenshot = string.replace('http://', '').replace('https://', '').replace(/([/])/gi, '-').replace(/([.])/g, '_'),
+            screenshotFileName;
+
+        if (screenshot.substr(-1) === '-') {
+            screenshotFileName = screenshot.replace(/.$/, '');
+        } else {
+            screenshotFileName = screenshot;
+        }
+
+        var screenshotDestination = baseDirectory + currentDateAndTime + '/' + screenshotFileName + '.png';
+
+        console.log('\n✔ Rozpoczęcie robienia screenshota ze strony:\n' + string + '\n');
+
+        webshot(string, screenshotDestination, function (err) {
+            if (err) {
+                console.log(err);
+                console.log(screenshotFileName);
+
+                return document.dispatchEvent(errorEvent);
+
+            } else {
+                console.log('\n✔ SCREENSHOT WYKONANY\n' + screenshotFileName + '\n');
+
+                document.dispatchEvent(successEvent);
+            }
+        });
+    });
+}
