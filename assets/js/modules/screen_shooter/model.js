@@ -44,12 +44,23 @@ function makeScreenshots() {
                 console.log(screenshotFileName);
 
                 return document.dispatchEvent(errorEvent);
-
             } else {
                 console.log('\n✔ SCREENSHOT WYKONANY\n' + screenshotFileName + '\n');
 
                 document.dispatchEvent(successEvent);
             }
         });
+    });
+}
+
+
+// Create .zip archive with all screenshots
+function makeArchive() {
+    zipFolder(baseDirectory + currentDateAndTime, baseDirectory + currentDateAndTime + '.zip', function (err) {
+        if (err) {
+            console.log('\nX BŁĄD TWORZENIA ARCHIWUM .ZIP\n' + baseDirectory + currentDateAndTime + '.zip' + '\n');
+        } else {
+            console.log('\n✔ ARCHIWUM .ZIP WYKONANE POPRAWNIE\n' + baseDirectory + currentDateAndTime + '.zip' + '\n');
+        }
     });
 }

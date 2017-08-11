@@ -244,6 +244,8 @@ document.addEventListener('successEvent', function successScreenshotsAndSaveFile
 
         $('#spinner-modal').modal('hide');
 
+        makeArchive();
+
         successQuantity = 0;
         errorQuantity = 0;
 

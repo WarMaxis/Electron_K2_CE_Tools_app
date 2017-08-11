@@ -14,4 +14,5 @@ const fse = require('fs-extra'),
     imageminPngquant = require('imagemin-pngquant'),
 
     // Webshot module - https://github.com/brenden/node-webshot
-    webshot = require('../webshot_lib/webshot');
+    webshot = require('../webshot_lib/webshot'),
+    zipFolder = require('zip-folder');
