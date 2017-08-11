@@ -55,12 +55,20 @@ function makeScreenshots() {
 
 
 // Create .zip archive with all screenshots
-function makeArchive() {
+function makeArchive(callback) {
     zipFolder(baseDirectory + currentDateAndTime, baseDirectory + currentDateAndTime + '.zip', function (err) {
         if (err) {
             console.log('\nX BŁĄD TWORZENIA ARCHIWUM .ZIP\n' + baseDirectory + currentDateAndTime + '.zip' + '\n');
         } else {
             console.log('\n✔ ARCHIWUM .ZIP WYKONANE POPRAWNIE\n' + baseDirectory + currentDateAndTime + '.zip' + '\n');
+
+            callback();
         }
     });
+}
+
+
+// Copy done .zip archive to remote directory
+function copyToRemoteDirectory() {
+    fse.createReadStream(baseDirectory + currentDateAndTime + '.zip').pipe(fse.createWriteStream(remoteDirectory + currentDateAndTime + '.zip'));
 }

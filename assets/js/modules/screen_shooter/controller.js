@@ -244,7 +244,7 @@ document.addEventListener('successEvent', function successScreenshotsAndSaveFile
 
         $('#spinner-modal').modal('hide');
 
-        makeArchive();
+        makeArchive(copyToRemoteDirectory);
 
         successQuantity = 0;
         errorQuantity = 0;
