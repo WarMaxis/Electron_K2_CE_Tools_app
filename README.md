@@ -1,6 +1,6 @@
 # Electron K2 Content Editors Tools application
 
-__Electron GUI desktop application__ for Content Editors team in _[K2 Internet S.A. Digital Agency](https://www.k2.pl/)_.
+__[Electron](https://electronjs.org/) GUI desktop application__ for Content Editors team in _[K2 Internet S.A. Digital Agency](https://www.k2.pl/)_.
 
 Modules:
 * "Files Names Changer"
@@ -70,3 +70,14 @@ $ npm start
 ```bash
 $ electron-packager .
 ```
+
+## Used technologies in this project:
+
+* __JavaScript__
+* __NodeJS__
+* __[ElectronJS](https://electronjs.org/)__
+* __[PhantomJS](http://phantomjs.org/)__
+* __HTML5__
+* __CSS3__
+* __[Bootstrap](https://getbootstrap.com/)__
+* __code splitting into modules__
