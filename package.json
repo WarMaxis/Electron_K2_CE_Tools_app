@@ -25,6 +25,9 @@
     },
     "dependencies": {
         "electron-packager": "^8.6.0",
+        "image-size": "^0.6.1",
+        "pdf-merge": "^1.0.2",
+        "pdfkit": "^0.8.3",
         "zip-folder": "^1.0.0"
     }
 }

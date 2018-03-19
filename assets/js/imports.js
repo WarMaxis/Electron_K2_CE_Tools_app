@@ -15,4 +15,7 @@ const fse = require('fs-extra'),
 
     // Webshot module - https://github.com/brenden/node-webshot
     webshot = require('../webshot_lib/webshot'),
-    zipFolder = require('zip-folder');
+    zipFolder = require('zip-folder'),
+    PDFDocument = require('pdfkit'),
+    sizeOf = require('image-size'),
+    PDFMerge = require('pdf-merge');

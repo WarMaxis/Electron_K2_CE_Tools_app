@@ -105,7 +105,7 @@ function chooseDirectory() {
 
             return;
         } else {
-            baseDirectory = folderPaths[0] + '/';
+            baseDirectory = folderPaths[0] + '\\';
 
             appObjects.outputDirectoryAlert[0].style.display = 'block';
 
@@ -180,6 +180,15 @@ appObjects.chooseURLs.onclick = function () {
 
     remoteDirectory = '';
 
+    makeScreenshotsInterval = 0;
+    urlListForEachStep = 0;
+
+    controlObject.controlUrls = [];
+    controlObject.isDone = [];
+    controlObject.unsortedPDF = [];
+
+    pdfArray = [];
+
     return chooseURLsList();
 };
 
@@ -253,6 +262,8 @@ document.addEventListener('successEvent', function successScreenshotsAndSaveFile
             makeArchive(copyToRemoteDirectory);
         }
 
+        mergePDF();
+
         document.addEventListener('zipDone', function () {
             appObjects.outputRemoteDirectorySuccess.innerHTML = remoteDirectory + currentDateAndTime + '.zip';
 
@@ -301,6 +312,12 @@ document.addEventListener('errorEvent', function () {
 
         errorQuantity = 0;
         successQuantity = 0;
+
+        for (var i = 0; i < controlObject.controlUrls.length; i++) {
+            if (controlObject.isDone[i] === false) {
+                console.log('Błąd przy robieniu screena: ' + controlObject.controlUrls[i] + ' !!!');
+            }
+        }
     } else {
         appObjects.modalFailQuantity.style.display = 'block';
 
