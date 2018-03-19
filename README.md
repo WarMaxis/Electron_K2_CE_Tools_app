@@ -41,7 +41,7 @@ http://www.anotherexamplesite.pl/test2/people.png
     - change CSS before take screenshots;    
     - run JS scripts before screenshots;    
     - set timeouts;    
-    - change userAgent    
+    - change __userAgent__    
 
     and so much more (cookies, shot size, change quality etc.)
 * more examples of __[PhantomJS](http://phantomjs.org/)__ config are in ```/webshot_lib/examples/``` directory
