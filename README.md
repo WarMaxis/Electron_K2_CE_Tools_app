@@ -37,7 +37,7 @@ http://www.anotherexamplesite.pl/test2/people.png
 * catching errors and presenting it in GUI
 * __extensive console messages__
 * a lot of __[PhantomJS](http://phantomjs.org/)__ config that allow you to:    
-    - change viewport size (make screenshots mobile version of website);    
+    - change viewport size (make screenshots __mobile version__ of website);    
     - change CSS before take screenshots;    
     - run JS scripts before screenshots;    
     - set timeouts;    
